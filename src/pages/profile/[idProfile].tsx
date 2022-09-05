@@ -7,6 +7,7 @@ import { useRouteData } from 'solid-app-router'
 import { createMemo, createUniqueId, For, Match, Show, Switch } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import ButtonFollowUser from '@components/ButtonFollowUser'
+import { Title } from 'solid-meta'
 
 const Page = () => {
   const pageData = useRouteData()
@@ -30,6 +31,7 @@ const Page = () => {
       <div class="container mx-auto animate-appear">
         <Switch fallback={<>Loading...</>}>
           <Match when={pageData.profile()?.error?.message}>
+            <Title>Profile - LensBook</Title>
             <div>{pageData.profile()?.error?.message}</div>
           </Match>
           <Match when={!pageData.profile()?.data?.profile}>This profile doesn't exist.</Match>
@@ -40,11 +42,13 @@ const Page = () => {
                   <Match
                     when={!pageData.profile()?.data?.profile?.picture?.original?.url?.includes('lens.infura-ipfs.io')}
                   >
+                    <Title>Profile page not found - LensBook</Title>
                     <div class="bg-emerald-900 w-60 h-60 rounded mx-auto" />
                   </Match>
                   <Match
                     when={pageData.profile()?.data?.profile?.picture?.original?.url?.includes('lens.infura-ipfs.io')}
                   >
+                    <Title>{pageData.profile()?.data?.profile.name}'s profile - LensBook</Title>
                     <div class="relative w-60 h-60 bg-emerald-900 rounded mx-auto">
                       <img
                         src={pageData.profile()?.data?.profile.picture.original.url}

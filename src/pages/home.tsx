@@ -1,6 +1,6 @@
 import { Title } from 'solid-meta'
 import { getRecommendedProfiles } from '@api/profiles/get-recommended'
-import { createEffect, createResource, createSignal, For, Match, Switch } from 'solid-js'
+import { createResource, createSignal, For, Match, Switch } from 'solid-js'
 import { ROUTE_PROFILE } from '@config/routes'
 import { Link } from 'solid-app-router'
 
